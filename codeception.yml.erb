@@ -1,8 +1,8 @@
 paths:
-    tests: <%= ENV['TESTS_BASEPATH'] %>/tests/codeception
-    log: <%= ENV['TESTS_BASEPATH'] %>/tests/codeception/_log
-    data: <%= ENV['TESTS_BASEPATH'] %>/tests/codeception/_data
-    helpers: <%= ENV['TESTS_BASEPATH'] %>/tests/codeception/_helpers
+    tests: <%= ENV['TESTS_BASEPATH_REL'] %>/codeception
+    log: <%= ENV['TESTS_BASEPATH_REL'] %>/codeception/_log
+    data: <%= ENV['TESTS_BASEPATH_REL'] %>/codeception/_data
+    helpers: <%= ENV['TESTS_BASEPATH_REL'] %>/codeception/_helpers
 settings:
     bootstrap: _bootstrap.php
     suite_class: \PHPUnit_Framework_TestSuite
@@ -12,10 +12,10 @@ settings:
 modules:
     config:
         Db:
-            dsn: 'mysql:host=<%= ENV['DB_HOST'] %>;port=<%= ENV['DB_PORT'] %>;dbname=<%= ENV['DB_NAME'] %>'
-            user: '<%= ENV['DB_USER'] %>'
-            password: '<%= ENV['DB_PASSWORD'] %>'
-            dump: <%= ENV['TESTS_BASEPATH'] %>/tests/codeception/_data/dump.sql
+            dsn: 'mysql:host=<%= ENV['DATABASE_HOST'] %>;port=<%= ENV['DATABASE_PORT'] %>;dbname=<%= ENV['DATABASE_NAME'] %>'
+            user: '<%= ENV['DATABASE_USER'] %>'
+            password: '<%= ENV['DATABASE_PASSWORD'] %>'
+            dump: <%= ENV['TESTS_BASEPATH_REL'] %>/codeception/_data/dump.sql
             populate: true
             cleanup: true
         MailCatcher:

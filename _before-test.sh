@@ -14,14 +14,23 @@ else
     set -o errexit
 fi
 
+if [ "$(basename $script_path/..)" == "dna" ]; then
+    # assume we are testing the dna
+    export PROJECT_BASEPATH=$(pwd)/../..
+else
+    # assume we are testing a yiiapp under yiiapps/
+    export PROJECT_BASEPATH=$(pwd)/../../..
+fi
+
 export TESTS_BASEPATH=$(pwd)
-export TESTS_FRAMEWORK_BASEPATH=$(pwd)/../../core/tests
+export TESTS_FRAMEWORK_BASEPATH=$PROJECT_BASEPATH/vendor/neam/yii-dna-test-framework
+export TESTS_BASEPATH_REL=$(python -c "import os.path; print os.path.relpath('$TESTS_BASEPATH', '$TESTS_FRAMEWORK_BASEPATH')")
 
 # run composer install on both app and tests directories
 cd $TESTS_BASEPATH/..
-php composer.phar install --prefer-source
+php $PROJECT_BASEPATH/composer.phar install --prefer-source
 cd $TESTS_FRAMEWORK_BASEPATH
-php ../composer.phar install --prefer-source
+php $PROJECT_BASEPATH/composer.phar install --prefer-source
 
 # defaults
 
@@ -29,20 +38,21 @@ if [ "$COVERAGE" == "" ]; then
     export COVERAGE=full
 fi
 
+php $PROJECT_BASEPATH/vendor/neam/php-app-config/export.php | tee /tmp/php-app-config.sh
+source /tmp/php-app-config.sh
+
 cd $TESTS_BASEPATH
-../app/yiic config exportDbConfig --connectionID=dbTest | tee /tmp/config.sh
-../app/yiic config exportEnvbootstrapConfig --connectionID=dbTest | tee -a /tmp/config.sh
-source /tmp/config.sh
-echo "DROP DATABASE IF EXISTS $DB_NAME; CREATE DATABASE $DB_NAME;" | mysql -h$DB_HOST -P$DB_PORT -u$DB_USER --password=$DB_PASSWORD
+echo "DROP DATABASE IF EXISTS $TEST_DB_NAME; CREATE DATABASE $TEST_DB_NAME;" | mysql -h$TEST_DB_HOST -P$TEST_DB_PORT -u$TEST_DB_USER --password=$TEST_DB_PASSWORD
 
 cd $TESTS_FRAMEWORK_BASEPATH
 erb $TESTS_FRAMEWORK_BASEPATH/codeception.yml.erb > $TESTS_BASEPATH/codeception.yml
 
 cd $TESTS_BASEPATH
 ./generate-local-codeception-config.sh
+$TESTS_FRAMEWORK_BASEPATH/vendor/bin/codecept build
 
-cd $TESTS_FRAMEWORK_BASEPATH
-vendor/bin/codecept build
-
-# leave user at original pwd
-cd $TESTS_BASEPATH
+# function codecept for easy access to codecept binary
+function codecept () {
+    $TESTS_FRAMEWORK_BASEPATH/vendor/bin/codecept $@
+}
+export -f codecept
