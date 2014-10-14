@@ -4,8 +4,8 @@ set -x;
 
 echo "Note: When running or sourcing this script, you must reside within the tests folder of the component you want to test"
 
-if [ "$0" == "-bash" ]; then
-    echo "Assuming running sourced from within web container"
+if [ "$0" == "-bash" ] || [ "$0" == "bash" ]; then
+    echo "Assuming running sourced"
     $script_path=$(pwd)
 else
     script_path=`dirname $0`
