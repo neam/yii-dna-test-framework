@@ -69,3 +69,19 @@ function test_console () {
     $PROJECT_BASEPATH/vendor/bin/yii-dna-pre-release-testing-console $@
 }
 export -f test_console
+function stop_api_mock_server () {
+    pid=$(ps aux | grep node/bin/api-mock | grep -v grep | head -n 1 | awk '{ print $2 }')
+    if [ "$pid" != "" ]; then
+        kill $pid
+    fi
+}
+export -f stop_api_mock_server
+function start_api_mock_server () {
+    installed=$(which api-mock)
+    if [ "$installed" == "" ]; then
+        npm -g install api-mock
+    fi
+    stop_api_mock_server
+    api-mock $@ --port 3000 &
+}
+export -f start_api_mock_server
