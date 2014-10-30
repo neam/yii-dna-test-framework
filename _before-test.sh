@@ -56,3 +56,16 @@ function codecept () {
     $TESTS_FRAMEWORK_BASEPATH/vendor/bin/codecept $@
 }
 export -f codecept
+# helper functions
+function activate_test_config () {
+    sed -i 's/#CONFIG_ENVIRONMENT=test/CONFIG_ENVIRONMENT=test/g' $PROJECT_BASEPATH/.env
+}
+export -f activate_test_config
+function inactivate_test_config () {
+    sed -i 's/CONFIG_ENVIRONMENT=test/#CONFIG_ENVIRONMENT=test/g' $PROJECT_BASEPATH/.env
+}
+export -f inactivate_test_config
+function test_console () {
+    $PROJECT_BASEPATH/vendor/bin/yii-dna-pre-release-testing-console $@
+}
+export -f test_console
