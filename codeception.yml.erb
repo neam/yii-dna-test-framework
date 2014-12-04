@@ -1,8 +1,8 @@
 paths:
-    tests: <%= ENV['TESTS_BASEPATH_REL'] %>/codeception
-    log: <%= ENV['TESTS_BASEPATH_REL'] %>/codeception/_log
-    data: <%= ENV['TESTS_BASEPATH_REL'] %>/codeception/_data
-    helpers: <%= ENV['TESTS_BASEPATH_REL'] %>/codeception/_helpers
+    tests: ./codeception
+    log: ./codeception/_log
+    data: ./codeception/_data
+    helpers: ./codeception/_helpers
 settings:
     bootstrap: _bootstrap.php
     suite_class: \PHPUnit_Framework_TestSuite
@@ -15,7 +15,7 @@ modules:
             dsn: 'mysql:host=<%= ENV['DATABASE_HOST'] %>;port=<%= ENV['DATABASE_PORT'] %>;dbname=<%= ENV['DATABASE_NAME'] %>'
             user: '<%= ENV['DATABASE_USER'] %>'
             password: '<%= ENV['DATABASE_PASSWORD'] %>'
-            dump: <%= ENV['TESTS_BASEPATH_REL'] %>/codeception/_data/dump.sql
+            dump: ./codeception/_data/dump.sql
             populate: true
             cleanup: true
         MailCatcher:

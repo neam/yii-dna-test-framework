@@ -6,7 +6,7 @@ echo "Note: When running or sourcing this script, you must reside within the tes
 
 if [ "$0" == "-bash" ] || [ "$0" == "bash" ]; then
     echo "Assuming running sourced"
-    $script_path=$(pwd)
+    script_path=$(pwd)
 else
     script_path=`dirname $0`
     cd $script_path
@@ -14,7 +14,7 @@ else
     set -o errexit
 fi
 
-if [ "$(basename $script_path/..)" == "dna" ]; then
+if [ "$(cd $script_path/..;basename $(pwd))" == "dna" ]; then
     # assume we are testing the dna
     export PROJECT_BASEPATH=$(pwd)/../..
 else
