@@ -77,7 +77,7 @@ function stop_api_mock_server () {
 }
 export -f stop_api_mock_server
 function start_api_mock_server () {
-    installed=$(which api-mock)
+    installed=$(which api-mock || true)
     if [ "$installed" == "" ]; then
         npm -g install api-mock
     fi
