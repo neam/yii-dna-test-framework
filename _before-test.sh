@@ -34,9 +34,6 @@ fi
 php $PROJECT_BASEPATH/vendor/neam/php-app-config/export.php | tee /tmp/php-app-config.sh
 source /tmp/php-app-config.sh
 
-cd $TESTS_BASEPATH
-echo "DROP DATABASE IF EXISTS $TEST_DB_NAME; CREATE DATABASE $TEST_DB_NAME;" | mysql -h$TEST_DB_HOST -P$TEST_DB_PORT -u$TEST_DB_USER --password=$TEST_DB_PASSWORD
-
 cd $TESTS_FRAMEWORK_BASEPATH
 erb $TESTS_FRAMEWORK_BASEPATH/codeception.yml.erb > $TESTS_BASEPATH/codeception.yml
 
