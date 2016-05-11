@@ -21,9 +21,9 @@ export TESTS_BASEPATH_REL=$(python -c "import os.path; print os.path.relpath('$T
 
 # run composer install on both app and tests directories
 cd $TESTS_BASEPATH/..
-php $PROJECT_BASEPATH/composer.phar install --prefer-source
+php $PROJECT_BASEPATH/composer.phar install --prefer-source --optimize-autoloader
 cd $TESTS_FRAMEWORK_BASEPATH
-php $PROJECT_BASEPATH/composer.phar install --prefer-source
+php $PROJECT_BASEPATH/composer.phar install --prefer-source --optimize-autoloader
 
 # defaults
 
