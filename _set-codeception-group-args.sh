@@ -22,8 +22,8 @@ case "$COVERAGE" in
         CODECEPTION_GROUP_ARGS="-g data:$DATA,coverage:minimal -g data:$DATA,coverage:basic -g data:$DATA,coverage:full -g data:$DATA,coverage:paranoid"
         ;;
     *)
-        echo "Warning: COVERAGE is not properly set (Current value is: '$COVERAGE')"
-        CODECEPTION_GROUP_ARGS="-g data:$DATA,coverage:not-set"
+        echo "Error: COVERAGE is not properly set (Current value is: '$COVERAGE')"
+        exit 1
         ;;
 esac
 echo "CODECEPTION_GROUP_ARGS=$CODECEPTION_GROUP_ARGS"
