@@ -24,3 +24,4 @@ cd $TESTS_BASEPATH/..
 php $PROJECT_BASEPATH/composer.phar install --prefer-source --optimize-autoloader
 cd $TESTS_FRAMEWORK_BASEPATH
 php $PROJECT_BASEPATH/composer.phar install --prefer-source --optimize-autoloader
+cd "$TESTS_BASEPATH"
