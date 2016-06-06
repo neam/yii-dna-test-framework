@@ -31,8 +31,9 @@ if [ "$COVERAGE" == "" ]; then
     export COVERAGE=full
 fi
 
-php $PROJECT_BASEPATH/vendor/neam/php-app-config/export.php | tee /tmp/php-app-config.sh
-source /tmp/php-app-config.sh
+cd $PROJECT_BASEPATH
+source vendor/neam/php-app-config/shell-export.sh
+cd -
 
 cd $TESTS_FRAMEWORK_BASEPATH
 erb $TESTS_FRAMEWORK_BASEPATH/codeception.yml.erb > $TESTS_BASEPATH/codeception.yml
