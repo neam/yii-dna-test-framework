@@ -13,13 +13,16 @@
         }
     ],
     "require": {
-        "php": ">=5.3.0",
-        "neam/yii-dna-pre-release-testing": "dev-develop",
+        "php": ">=5.4.0",
+        "neam/yii-dna-pre-release-testing": "dev-develop@dev",
         "neam/php-app-config": "dev-develop"
     },
     "require-dev": {
         "captbaritone/mailcatcher-codeception-module": "dev-master",
         "neam/codeception-saucelabs-metadata": "dev-develop",
-        "codeception/codeception": "2.0.*@dev"
+        "yiiext/migrate-command": "dev-master#35f315b as 0.7.2.1@dev",
+        "motin/yii-consoletools": "dev-awaiting-prs@dev",
+        "sumwai/yii-fixture-helper": "@dev",
+        "codeception/codeception": "~2.2.1"
     }
 }
