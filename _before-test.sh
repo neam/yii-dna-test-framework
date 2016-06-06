@@ -19,12 +19,6 @@ export TESTS_BASEPATH=$(pwd)
 export TESTS_FRAMEWORK_BASEPATH=$PROJECT_BASEPATH/vendor/neam/yii-dna-test-framework
 export TESTS_BASEPATH_REL=$(python -c "import os.path; print os.path.relpath('$TESTS_BASEPATH', '$TESTS_FRAMEWORK_BASEPATH')")
 
-# run composer install on both app and tests directories
-cd $TESTS_BASEPATH/..
-php $PROJECT_BASEPATH/composer.phar install --prefer-source --optimize-autoloader
-cd $TESTS_FRAMEWORK_BASEPATH
-php $PROJECT_BASEPATH/composer.phar install --prefer-source --optimize-autoloader
-
 # defaults
 
 if [ "$COVERAGE" == "" ]; then
