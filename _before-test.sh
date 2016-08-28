@@ -25,6 +25,11 @@ if [ "$COVERAGE" == "" ]; then
     export COVERAGE=full
 fi
 
+if [[ "$DATA" != test-* ]]; then
+  echo "* Prefixing the current data profile with test-, so that there is less risk that tests run against live data";
+  export DATA=test-$DATA
+fi
+
 cd $PROJECT_BASEPATH
 source vendor/neam/php-app-config/shell-export.sh
 cd -
