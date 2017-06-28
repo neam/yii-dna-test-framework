@@ -41,9 +41,13 @@ cd $TESTS_BASEPATH
 ./generate-local-codeception-config.sh
 $TESTS_FRAMEWORK_BASEPATH/vendor/bin/codecept build
 
-# function codecept for easy access to codecept binary
+#XDEBUG_PROFILING_PREFIX="php -dxdebug.profiler_enable=1"
+XDEBUG_PROFILING_PREFIX=""
+
+# function codecept for easy access to codecept binary running with proper config
 function codecept () {
-    $TESTS_FRAMEWORK_BASEPATH/vendor/bin/codecept $@
+    echo time $XDEBUG_PROFILING_PREFIX $TESTS_FRAMEWORK_BASEPATH/vendor/bin/codecept $@;
+    time $XDEBUG_PROFILING_PREFIX $TESTS_FRAMEWORK_BASEPATH/vendor/bin/codecept $@
 }
 export -f codecept
 # helper functions
