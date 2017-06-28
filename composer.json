@@ -1,8 +1,8 @@
 {
-    "name": "neam/yii-dna-test-framework",
+    "name": "neam/dna-project-base-testing-setup",
     "description": "",
-    "keywords": ["php", "yii", "test-framework", "tests", "codeception"],
-    "homepage": "https://github.com/neam/yii-dna-test-framework",
+    "keywords": ["php", "dna-project-base", "testing-setup", "tests", "codeception"],
+    "homepage": "https://github.com/neam/dna-project-base-testing-setup",
     "type": "library",
     "license": "BSD-3-Clause",
     "authors": [
