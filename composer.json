@@ -20,9 +20,6 @@
     "require-dev": {
         "captbaritone/mailcatcher-codeception-module": "dev-master",
         "neam/codeception-saucelabs-metadata": "dev-develop",
-        "yiiext/migrate-command": "dev-master#35f315b as 0.7.2.1@dev",
-        "motin/yii-consoletools": "dev-awaiting-prs@dev",
-        "sumwai/yii-fixture-helper": "@dev",
         "phpunit/php-code-coverage": "^4",
         "codeception/codeception": "=2.2.2"
     }
