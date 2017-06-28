@@ -1,0 +1,26 @@
+{
+    "name": "neam/yii-dna-test-framework",
+    "description": "",
+    "keywords": ["php", "yii", "test-framework", "tests", "codeception"],
+    "homepage": "https://github.com/neam/yii-dna-test-framework",
+    "type": "library",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Fredrik Wollsén",
+            "email": "fredrik@neam.se",
+            "homepage": "http://www.neam.se"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "neam/yii-dna-pre-release-testing": "dev-develop@dev",
+        "neam/php-app-config": "dev-develop"
+    },
+    "require-dev": {
+        "captbaritone/mailcatcher-codeception-module": "dev-master",
+        "neam/codeception-saucelabs-metadata": "dev-develop",
+        "phpunit/php-code-coverage": "^4",
+        "codeception/codeception": "=2.2.2"
+    }
+}
